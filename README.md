@@ -1,4 +1,4 @@
-# Data_science_for_business
+# Ciência de Dados para Negócios I
 Disciplina de Ciência de Dados para Negócios. IC - UFAL. Semestre letivo 2018.2.
 
 
