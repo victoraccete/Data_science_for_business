@@ -1,4 +1,5 @@
-suicides = read.csv("master.csv", header = TRUE)
+suicides = read.csv("suiciderates.csv", header = TRUE, fileEncoding="UTF-8-BOM") #aqui talvez precise de adaptação
+                                                 #a depender do diretório do R
 library(ggplot2)
 
 #Trocando o nome da coluna de país para um mais simples
