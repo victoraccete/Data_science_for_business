@@ -15,5 +15,13 @@ consumption <- read.csv("household_power_consumption.txt", header = F, sep = ";"
 header <- read.csv("household_power_consumption.txt", header = F, sep = ";", nrows=1, as.is = T)
 colnames(consumption) = header
 
-plot = hist(consumption$Global_active_power, col = "red", 
+# histograma
+png("plot1.png")
+hist(consumption$Global_active_power, col = "red", 
       xlab = "Global Active Power (killowatts)", main = "Global Active Power")
+dev.off()
+
+
+# timeseries
+plot.ts(consumption$Global_active_power, xaxt = "n", xlab = NULL, ylab = "Global Active Power (killowatts)")
+axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
