@@ -1,3 +1,10 @@
+install.packages("lubridate")
+library(lubridate)
+
+#dmy("1/2/2007")
+#wday(dmy("1/2/2007"), label = TRUE)
+
+
 # o dataset pode ser encontrado no link do README.md
 
 # a atividade só quer analisar as datas 01/02/2007 e 02/02/2007
@@ -7,3 +14,6 @@ consumption <- read.csv("household_power_consumption.txt", header = F, sep = ";"
 # para armazenar o cabeçalho e colocar no dataframe
 header <- read.csv("household_power_consumption.txt", header = F, sep = ";", nrows=1, as.is = T)
 colnames(consumption) = header
+
+plot = hist(consumption$Global_active_power, col = "red", 
+      xlab = "Global Active Power (killowatts)", main = "Global Active Power")
