@@ -15,13 +15,41 @@ consumption <- read.csv("household_power_consumption.txt", header = F, sep = ";"
 header <- read.csv("household_power_consumption.txt", header = F, sep = ";", nrows=1, as.is = T)
 colnames(consumption) = header
 
-# histograma
+# figura 1
 png("plot1.png")
 hist(consumption$Global_active_power, col = "red", 
       xlab = "Global Active Power (killowatts)", main = "Global Active Power")
 dev.off()
 
-
-# timeseries
+# figura 2
+png("plot2.png")
 plot.ts(consumption$Global_active_power, xaxt = "n", xlab = NULL, ylab = "Global Active Power (killowatts)")
 axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
+dev.off()
+
+# figura 3
+png("plot3.png")
+plot.ts(x = consumption$Sub_metering_1, col = "black", xaxt = "n", xlab = NULL, ylab = "Energy Sub Metering")
+lines(x = consumption$Sub_metering_2, col = "red")
+lines(x = consumption$Sub_metering_3, col = "blue")
+axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
+dev.off()
+
+# figura 4
+png("plot4.png")
+par(mfrow=c(2,2))
+
+plot.ts(consumption$Global_active_power, xaxt = "n", xlab = NULL, ylab = "Global Active Power (killowatts)")
+axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
+
+plot.ts(x = consumption$Voltage, xaxt = "n", xlab = "datetime", ylab = "Voltage")
+axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
+
+plot.ts(x = consumption$Sub_metering_1, col = "black", xaxt = "n", xlab = NULL, ylab = "Energy Sub Metering")
+lines(x = consumption$Sub_metering_2, col = "red")
+lines(x = consumption$Sub_metering_3, col = "blue")
+axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
+
+plot.ts(x = consumption$Global_reactive_power, xaxt = "n", xlab = "datetime", ylab = "Global_reactive_power")
+axis(1, at=1:3, labels = c("Thu", "Fri", "Sat"))
+dev.off()
