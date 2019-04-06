@@ -1,4 +1,4 @@
-1. Qual a correlação entre a taxa de suicídios e crises econômicas e políticas?
-2. Quais faixas de idade tiveram maior aumento e maior redução na taxa de suicídios de 1985 até 2016?
-3. Há correlação entre pib per capita e taxa de suicídios?
-4. Qual sexo mais comete suicídio no Brasil? Isso se repete na maior parte do mundo?
+1. Quais faixas de idade tiveram maior aumento na taxa de suicÃ­dios de 1985 a 2016?
+2. Quais faixas de idade tiveram maior reduÃ§Ã£o na taxa de suicÃ­dios de 1985 atÃ© 2016?
+3. HÃ¡ correlaÃ§Ã£o entre pib per capita e taxa de suicÃ­dios?
+4. Qual sexo mais comete suicÃ­dio no Brasil? Isso se repete na maior parte do mundo?
