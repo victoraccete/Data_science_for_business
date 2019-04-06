@@ -6,7 +6,7 @@ Projeto para levantar questões de pesquisa e buscar respondê-las através da a
 
 
 **Questões de pesquisa:**
-1. Qual a correlação entre a taxa de suicídios e crises econômicas e políticas?
-2. Quais faixas de idade tiveram maior aumento e maior redução na taxa de suicídios de 1985 até 2016?
+1. Quais faixas de idade tiveram maior aumento na taxa de suicídios de 1985 a 2016?
+2. Quais faixas de idade tiveram maior redução na taxa de suicídios de 1985 até 2016?
 3. Há correlação entre pib per capita e taxa de suicídios?
 4. Qual sexo mais comete suicídio no Brasil? Isso se repete na maior parte do mundo?
