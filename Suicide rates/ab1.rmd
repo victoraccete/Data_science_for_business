@@ -1,5 +1,6 @@
 ---
 title: "Apresentação ggplot2 e lattice"
+subtitle: "Alunos: Pedro, Victor e David"
 output: html_document
 ---
 
@@ -73,3 +74,5 @@ plot(g)
 ```
 
 Assim, vimos algumas funções básicas do ggplot2 e verificamos o ponto forte da biblioteca, que é a criação de gráficos de uma maneira simples e bonita. 
+
+## Introdução ao Lattice
