@@ -15,12 +15,13 @@ ggplot2 é considerada a biblioteca mais elegante para criação de gráficos dispon
 
 O primeiro passo, naturalmente, é instalar e importar a biblioteca.
 ```{r, echo=FALSE}
-install.packages("ggplot2")
+# install.packages("ggplot2")
 ```
 
 ```{r, echo=FALSE}
 library(ggplot2)
 ```
+
 Para essa introdução, usaremos a base de dados que já vem embutida ao ggplot2, chamada midwest. 
 ```{r, echo=TRUE}
 options(scipen=999) # Desliga a notação científica
@@ -32,6 +33,7 @@ Chamaremos a função ggplot, diremos o dataframe, os eixos e o tipo do gráfico.
 ```{r}
 ggplot(midwest, aes(x=area, y=poptotal)) + geom_point()
 ```
+
 Compare com o mesmo gráfico com o R base. 
 ```{r, echo=FALSE}
 plot(midwest$area, midwest$poptotal)
@@ -39,10 +41,35 @@ plot(midwest$area, midwest$poptotal)
 
 Podemos ver que o gráfico com ggplot2 saiu muito melhor. Mesmo assim, ainda há problemas com ele. Não está claro o que ele quer dizer. Não há títulos, legendas e ele ainda não está muito bonito. 
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+Vamos dar alguns passos para melhor a visualização das informações. Primeiro, vamos adicionar uma linha e sem seguida vamos dar um zoom no gráfico, para melhorar a visualização.  
+```{r, echo=FALSE}
+g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point() + geom_smooth(method="lm") 
+g <- g + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000))
+plot(g)
 ```
+
+Ficou um pouco melhor, mas ainda podemos melhorar. Vamos adicionar um título e renomear os eixos. 
+```{r, echo=FALSE}
+g <- g + labs(title="Área x População", subtitle="Por condado, retirado do dataset 'midwest'", y="População", x="Área")
+plot(g)
+```
+
+Podemos customizar o gráfico, mudando a cor da linha e a cor dos pontos, além do tamanho dos pontos.
+```{r, echo=FALSE}
+g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point(col="steelblue", size=2) + geom_smooth(method="lm", col="darkred") + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + labs(title="Área x População", subtitle="Por condado, retirado do dataset 'midwest'", y="População", x="Área")
+plot(g)
+```
+
+No entanto, podemos deixar a visualização ainda mais interessante. E se as cores dos pontos representassem uma coluna do dataframe? Isso é possível de fazer da seguinte forma:
+```{r, echo=FALSE}
+g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point(aes(col=state), size=2) + geom_smooth(method="lm", col="darkred", size=1) + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + labs(title="Área x População", subtitle="Por condado, retirado do dataset 'midwest'", y="População", x="Área")
+plot(g)
+```
+
+Muito melhor! Agora, podemos colocar um fundo branco da seguinte forma:
+```{r, echo=FALSE}
+g <- g + theme_classic()
+plot(g)
+```
+
+Assim, vimos algumas funções básicas do ggplot2 e verificamos o ponto forte da biblioteca, que é a criação de gráficos de uma maneira simples e bonita. 
