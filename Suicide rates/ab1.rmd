@@ -7,15 +7,37 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Introdução ao ggplot2
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+ggplot2 é uma biblioteca do R que permite criar, declarativamente, gráficos e customizá-los. Com dados e variáveis para serem mapeadas, o ggplot2 cuida do restante do gráfico, deixando opções estéticas a cargo do programador. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+ggplot2 é considerada a biblioteca mais elegante para criação de gráficos disponível em R. A seguir, vamos mostrar uma breve introdução ao ggplot2, mostrando alguns recursos e como customizar os gráficos. 
 
-```{r cars}
-summary(cars)
+O primeiro passo, naturalmente, é instalar e importar a biblioteca.
+```{r, echo=FALSE}
+install.packages("ggplot2")
 ```
+
+```{r, echo=FALSE}
+library(ggplot2)
+```
+Para essa introdução, usaremos a base de dados que já vem embutida ao ggplot2, chamada midwest. 
+```{r, echo=TRUE}
+options(scipen=999) # Desliga a notação científica
+data("midwest", package = "ggplot2")
+head(midwest, n = 5) # Mostrando as primeiras 5 linhas
+```
+#### Criando um gráfico básico
+Chamaremos a função ggplot, diremos o dataframe, os eixos e o tipo do gráfico. 
+```{r}
+ggplot(midwest, aes(x=area, y=poptotal)) + geom_point()
+```
+Compare com o mesmo gráfico com o R base. 
+```{r, echo=FALSE}
+plot(midwest$area, midwest$poptotal)
+```
+
+Podemos ver que o gráfico com ggplot2 saiu muito melhor. Mesmo assim, ainda há problemas com ele. Não está claro o que ele quer dizer. Não há títulos, legendas e ele ainda não está muito bonito. 
 
 ## Including Plots
 
@@ -24,5 +46,3 @@ You can also embed plots, for example:
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
