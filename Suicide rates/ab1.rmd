@@ -1,5 +1,5 @@
 ---
-title: "Apresenta√ß√£o ggplot2 e lattice"
+title: "ApresentaÁ„o ggplot2 e lattice"
 subtitle: "Alunos: Pedro, Victor e David"
 output: html_document
 ---
@@ -8,13 +8,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introdu√ß√£o ao ggplot2
+## IntroduÁ„o ao ggplot2
 
-ggplot2 √© uma biblioteca do R que permite criar, declarativamente, gr√°ficos e customiz√°-los. Com dados e vari√°veis para serem mapeadas, o ggplot2 cuida do restante do gr√°fico, deixando op√ß√µes est√©ticas a cargo do programador. 
+ggplot2 È uma biblioteca do R que permite criar, declarativamente, gr·ficos e customiz·-los. Com dados e vari·veis para serem mapeadas, o ggplot2 cuida do restante do gr·fico, deixando opÁıes estÈticas a cargo do programador. 
 
-ggplot2 √© considerada a biblioteca mais elegante para cria√ß√£o de gr√°ficos dispon√≠vel em R. A seguir, vamos mostrar uma breve introdu√ß√£o ao ggplot2, mostrando alguns recursos e como customizar os gr√°ficos. 
+ggplot2 È considerada a biblioteca mais elegante para criaÁ„o de gr·ficos disponÌvel em R. A seguir, vamos mostrar uma breve introduÁ„o ao ggplot2, mostrando alguns recursos e como customizar os gr·ficos. 
 
-O primeiro passo, naturalmente, √© instalar e importar a biblioteca.
+O primeiro passo, naturalmente, È instalar e importar a biblioteca.
 ```{r, echo=FALSE}
 # install.packages("ggplot2")
 ```
@@ -23,47 +23,47 @@ O primeiro passo, naturalmente, √© instalar e importar a biblioteca.
 library(ggplot2)
 ```
 
-Para essa introdu√ß√£o, usaremos a base de dados que j√° vem embutida ao ggplot2, chamada midwest. 
+Para essa introduÁ„o, usaremos a base de dados que j· vem embutida ao ggplot2, chamada midwest. 
 ```{r, echo=TRUE}
-options(scipen=999) # Desliga a nota√ß√£o cient√≠fica
+options(scipen=999) # Desliga a notaÁ„o cientÌfica
 data("midwest", package = "ggplot2")
 head(midwest, n = 5) # Mostrando as primeiras 5 linhas
 ```
-#### Criando um gr√°fico b√°sico
-Chamaremos a fun√ß√£o ggplot, diremos o dataframe, os eixos e o tipo do gr√°fico. 
+#### Criando um gr·fico b·sico
+Chamaremos a funÁ„o ggplot, diremos o dataframe, os eixos e o tipo do gr·fico. 
 ```{r}
 ggplot(midwest, aes(x=area, y=poptotal)) + geom_point()
 ```
 
-Compare com o mesmo gr√°fico com o R base. 
+Compare com o mesmo gr·fico com o R base. 
 ```{r, echo=FALSE}
 plot(midwest$area, midwest$poptotal)
 ```
 
-Podemos ver que o gr√°fico com ggplot2 saiu muito melhor. Mesmo assim, ainda h√° problemas com ele. N√£o est√° claro o que ele quer dizer. N√£o h√° t√≠tulos, legendas e ele ainda n√£o est√° muito bonito. 
+Podemos ver que o gr·fico com ggplot2 saiu muito melhor. Mesmo assim, ainda h· problemas com ele. N„o est· claro o que ele quer dizer. N„o h· tÌtulos, legendas e ele ainda n„o est· muito bonito. 
 
-Vamos dar alguns passos para melhor a visualiza√ß√£o das informa√ß√µes. Primeiro, vamos adicionar uma linha e sem seguida vamos dar um zoom no gr√°fico, para melhorar a visualiza√ß√£o.  
+Vamos dar alguns passos para melhor a visualizaÁ„o das informaÁıes. Primeiro, vamos adicionar uma linha e sem seguida vamos dar um zoom no gr·fico, para melhorar a visualizaÁ„o.  
 ```{r, echo=FALSE}
 g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point() + geom_smooth(method="lm") 
 g <- g + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000))
 plot(g)
 ```
 
-Ficou um pouco melhor, mas ainda podemos melhorar. Vamos adicionar um t√≠tulo e renomear os eixos. 
+Ficou um pouco melhor, mas ainda podemos melhorar. Vamos adicionar um tÌtulo e renomear os eixos. 
 ```{r, echo=FALSE}
-g <- g + labs(title="√Årea x Popula√ß√£o", subtitle="Por condado, retirado do dataset 'midwest'", y="Popula√ß√£o", x="√Årea")
+g <- g + labs(title="¡rea x PopulaÁ„o", subtitle="Por condado, retirado do dataset 'midwest'", y="PopulaÁ„o", x="¡rea")
 plot(g)
 ```
 
-Podemos customizar o gr√°fico, mudando a cor da linha e a cor dos pontos, al√©m do tamanho dos pontos.
+Podemos customizar o gr·fico, mudando a cor da linha e a cor dos pontos, alÈm do tamanho dos pontos.
 ```{r, echo=FALSE}
-g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point(col="steelblue", size=2) + geom_smooth(method="lm", col="darkred") + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + labs(title="√Årea x Popula√ß√£o", subtitle="Por condado, retirado do dataset 'midwest'", y="Popula√ß√£o", x="√Årea")
+g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point(col="steelblue", size=2) + geom_smooth(method="lm", col="darkred") + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + labs(title="¡rea x PopulaÁ„o", subtitle="Por condado, retirado do dataset 'midwest'", y="PopulaÁ„o", x="¡rea")
 plot(g)
 ```
 
-No entanto, podemos deixar a visualiza√ß√£o ainda mais interessante. E se as cores dos pontos representassem uma coluna do dataframe? Isso √© poss√≠vel de fazer da seguinte forma:
+No entanto, podemos deixar a visualizaÁ„o ainda mais interessante. E se as cores dos pontos representassem uma coluna do dataframe? Isso È possÌvel de fazer da seguinte forma:
 ```{r, echo=FALSE}
-g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point(aes(col=state), size=2) + geom_smooth(method="lm", col="darkred", size=1) + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + labs(title="√Årea x Popula√ß√£o", subtitle="Por condado, retirado do dataset 'midwest'", y="Popula√ß√£o", x="√Årea")
+g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point(aes(col=state), size=2) + geom_smooth(method="lm", col="darkred", size=1) + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000)) + labs(title="¡rea x PopulaÁ„o", subtitle="Por condado, retirado do dataset 'midwest'", y="PopulaÁ„o", x="¡rea")
 plot(g)
 ```
 
@@ -73,59 +73,57 @@ g <- g + theme_classic()
 plot(g)
 ```
 
-Assim, vimos algumas fun√ß√µes b√°sicas do ggplot2 e verificamos o ponto forte da biblioteca, que √© a cria√ß√£o de gr√°ficos de uma maneira simples e bonita. 
+Assim, vimos algumas funÁıes b·sicas do ggplot2 e verificamos o ponto forte da biblioteca, que È a criaÁ„o de gr·ficos de uma maneira simples e bonita. 
 
-## Introdu√ß√£o ao Lattice
-o Lattice √© um importante pacote de analise gr√°fica que antecedeu o ggplot2.
-√ötil para preparar pain√©is com gr√°ficos de forma automatizada. 
-Combinado com a leitura autom√°tica de arquivos de dados, torna a repetitiva visualiza√ß√£o de dados e prepara√ß√£o de gr√°ficos muito eficiente. 
+## IntroduÁ„o ao Lattice
+o Lattice È um importante pacote de analise gr·fica que antecedeu o ggplot2.
+⁄til para preparar painÈis com gr·ficos de forma automatizada. 
+Combinado com a leitura autom·tica de arquivos de dados, torna a repetitiva visualizaÁ„o de dados e preparaÁ„o de gr·ficos muito eficiente. 
 
 Instalando e carregando o pacote lattice
 ```{r, echo=FALSE}
-install.packages("lattice")
+#install.packages("lattice")
 
 library(lattice)     # carrega o pacote lattice
 ?lattice             # mostra ajuda do lattice
 ```
 
-Para os exemplos ser√° usada a base ‚ÄúCars93‚Äù
+Para os exemplos ser· usada a base "Cars93"
 
 ```{r, echo=FALSE}
 
 # para carregar a base de dados
-library(MASS) # carrega o pacote "MASS" que cont√©m a base de dados
+library(MASS) # carrega o pacote "MASS" que contÈm a base de dados
 data(Cars93)  # carrega a base de dados "Cars93"
+head(Cars93, n = 5)
 
 ```
 
-#### Criando um gr√°fico b√°sico
-O gr√°fico √© preparado com o comando b√°sico xyplot.
-No comando os dados MPG.city s√£o plotados versus EngineSize atrav√©s da express√£o ‚ÄúMPG.city ~ EngineSize‚Äù para o conjunto de dados total Cars93.
+#### Criando um gr·fico b·sico
+O gr·fico È preparado com o comando b·sico xyplot.
+No comando os dados MPG.city s„o plotados versus EngineSize atravÈs da express„o "MPG.city ~ EngineSize" para o conjunto de dados total Cars93.
 
 ```{r, echo=FALSE}
 
-# um dos tipos de gr√°ficos do pacote lattice
+# um dos tipos de gr·ficos do pacote lattice
 xyplot(MPG.city ~ EngineSize, Cars93)
 
 ```
 
-Outros comandos dispon√≠veis s√£o barchart, bwplot, densityplot, dotplot, histogram, etc.
+Outros comandos disponÌveis s„o barchart, bwplot, densityplot, dotplot, histogram, etc.
 
 #### Selecionando dados a serem plotados
-Dados S√£o selecionados atrav√©s da fun√ß√£o subset
+Dados S„o selecionados atravÈs da funÁ„o subset
 
 ```{r, echo=FALSE}
-data <- subset(Cars93, Manufacturer == 'Ford')
-data <- subset(Cars93, Manufacturer == 'Ford' 
-               & Manufacturer == 'Chevrolet' )
-data <- subset(Cars93, Manufacturer) 
-               c('Ford', 'Chevrolet', 'Toyota', 'Honda')
-
+data <- subset(Cars93, Manufacturer %in% 
+               c('Ford', 'Chevrolet', 'Toyota', 'Honda'))
+head(data, n = 5)
 ```
 
-#### Diferentes pain√©is
-O lattice aparece de forma importante quando precisamos de gr√°ficos com maiores detalhes, separados de acordo com outros fatores.
-Em vez de plotar tudo junto como no gr√°fico acima, a mesma informa√ß√£o pode ser plotada de forma separada por fabricante (Manufacturer), usando o s√≠mbolo ‚Äú|‚Äù.
+#### Diferentes painÈis
+O lattice aparece de forma importante quando precisamos de gr·ficos com maiores detalhes, separados de acordo com outros fatores.
+Em vez de plotar tudo junto como no gr·fico acima, a mesma informaÁ„o pode ser plotada de forma separada por fabricante (Manufacturer), usando o sÌmbolo "|".
 
 ```{r, echo=FALSE}
 # seleciona dados de quatro fabricantes para trabalhar 
@@ -135,22 +133,22 @@ data <- subset(Cars93, Manufacturer %in%
 xyplot(MPG.city ~ EngineSize | Manufacturer, data)
 ```
 
-Podemos separar os dados ainda mais, por exemplo, por tipo de carro (‚ÄúType‚Äù) usando a op√ß√£o group. A fun√ß√£o auto.key, que adiciona a legenda.
+Podemos separar os dados ainda mais, por exemplo, por tipo de carro ("Type") usando a opÁ„o group. A funÁ„o auto.key, que adiciona a legenda.
 
 ```{r, echo=FALSE}
 xyplot(MPG.city ~ EngineSize | Manufacturer, data, 
        group = Type, auto.key = T)
 ```
 
-#### N√≠veis de classifica√ß√£o
+#### NÌveis de classificaÁ„o
 
-A f√≥rmula da fun√ß√£o xyplot abaixo apresenta o rendimento do carro (MPG.city) versus tamanho do motor (EngineSize) de acordo com o tamanho do carro e dividido entre carros produzidos dentro e fora dos EUA, por n√∫mero de passageiros.
+A fÛrmula da funÁ„o xyplot abaixo apresenta o rendimento do carro (MPG.city) versus tamanho do motor (EngineSize) de acordo com o tamanho do carro e dividido entre carros produzidos dentro e fora dos EUA, por n˙mero de passageiros.
 
 ```{r, echo=FALSE}
-# seleciona apenas tr√™s tipos de carro
+# seleciona apenas trÍs tipos de carro
 data <- subset(Cars93, Type %in% c('Compact', 'Small', 'Large'))
 
-# plota de acordo com origem, tipo e por n√∫mero de passageiros
+# plota de acordo com origem, tipo e por n˙mero de passageiros
 xyplot(MPG.city ~ EngineSize | Origin + Type, data, 
        group = Passengers,
        auto.key = list(space = 'right'))
@@ -164,7 +162,7 @@ xyplot(MPG.city ~ EngineSize | Manufacturer, data,
        group = Type, auto.key = list(space = 'right'))
 ```
 
-Para outras op√ß√µes:
+Para outras opÁıes:
 
 
 ```{r, echo=FALSE}
@@ -174,7 +172,7 @@ auto.key = list(space = 'right')
 # legenda em cima, em 3 colunas
 auto.key = list(space = 'top', columns = 3)
 
-# legenda dentro do gr√°fico
+# legenda dentro do gr·fico
 auto.key = list(corner = c(0, 0.85))
 ```
 
@@ -185,20 +183,20 @@ Mudar o tipo da legenda:
 auto.key = list(points = F, lines = T)
 ```
 
-#### T√≠tulo e nome dos eixos
+#### TÌtulo e nome dos eixos
 
-Para colocar um t√≠tulo no gr√°fico e mudar o nome dos eixos, use respectivamente main, xlab e ylab:
+Para colocar um tÌtulo no gr·fico e mudar o nome dos eixos, use respectivamente main, xlab e ylab:
 
 ```{r, echo=FALSE}
 xyplot(MPG.city ~ EngineSize | Manufacturer, data, 
      group = Type, 
      auto.key = list(space = 'right'),
-     main = 'Rela√ß√£o entre rendimento e motor',
+     main = 'RelaÁ„o entre rendimento e motor',
      xlab = 'tamanho do motor (litros)',
-     ylab = 'rendimento (milhas por gal√£o)')
+     ylab = 'rendimento (milhas por gal„o)')
 ```
 
-#### Tipo de gr√°fico
+#### Tipo de gr·fico
 
 ```{r, echo=FALSE}
 # pontos
@@ -211,10 +209,3 @@ xyplot(MPG.city ~ EngineSize | Manufacturer, data, type = 'l')
 xyplot(MPG.city ~ EngineSize | Manufacturer, data, type = 'o')
 ```
 
-#### Salvando os Gr√°ficos
-
-```{r, echo=FALSE}
-dev.copy(device = pdf, file = "exemplo.pdf", 
-         width = 600, paper = "USr")
-dev.off()
-```
