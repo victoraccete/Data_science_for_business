@@ -15,19 +15,6 @@ colnames(suicides)[which(names(suicides) == "ï..country")] <- "country"
 #Criando um dataframe s? com o Brasil
 brazil <- suicides[suicides$country == 'Brazil',]
 
-
-#Plotando o boxplot mostrando os suic?dios de homens e mulheres por ano
-ggplot(data = brazil) +
-  aes(x = sex, y = suicides.100k.pop, fill = country.year) +
-  geom_boxplot() +
-  scale_fill_viridis_d(option  = "inferno") +
-  labs(title = "Comparativo",
-       x = "Sexo",
-       y = "Suicidios",
-       subtitle = "Numero de suicidios por sexo por ano",
-       fill = "Ano") +
-  theme_bw()
-
 #Histograma de frequ?ncia de suic?dios
 ggplot(data = brazil) +
   aes(x = suicides_no) +
@@ -62,3 +49,17 @@ corr.test(brazil$gdp_per_capita...., brazil$suicides_no,
 
 corr.test(suicides$gdp_per_capita...., suicides$suicides_no, 
           method = "pearson")
+
+# Pergunta 4
+#Plotando o boxplot mostrando os suic?dios de homens e mulheres por ano
+ggplot(data = brazil) +
+  aes(x = sex, y = suicides.100k.pop, fill = country.year) +
+  geom_boxplot() +
+  scale_fill_viridis_d(option  = "inferno") +
+  labs(title = "Comparativo",
+       x = "Sexo",
+       y = "Suicidios",
+       subtitle = "Numero de suicidios por sexo por ano",
+       fill = "Ano") +
+  theme_bw()
+
