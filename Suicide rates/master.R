@@ -6,7 +6,7 @@ library(ggplot2)
 library(lubridate)
 library(psych)
 library(tidyverse)
-
+options(scipen=999) # Desliga a notação científica
 #ALTERAR DE ACORDO COM A NECESSIDADE
 suicides = read.csv("C:/Users/Victor/Documents/Data_science_for_business/Suicide rates/master.csv", header = TRUE)
 
@@ -63,3 +63,26 @@ ggplot(data = brazil) +
        fill = "Ano") +
   theme_bw()
 
+# Criando os subsets agrupando informações entre os anos
+suicide_count_per_sex <- aggregate(x=suicides$suicides_no, by=list(sex=suicides$sex), FUN=sum)
+grouped <- aggregate(x=suicides$suicides_no, 
+                     by=list(sex=suicides$sex, country=suicides$country), FUN=sum)
+
+ggplot(data = suicide_count_per_sex) +
+  aes(x = sex, weight = x) +
+  geom_bar(fill = "#0c4c8a") +
+  labs(title = "Comparativo Masculino x Feminino",
+       x = "Sexo",
+       y = "Número de suicídios",
+       subtitle = "Durante todos os anos, entre todos os países") +
+  theme_minimal()
+
+ggplot(data = grouped) +
+  aes(x = country, fill = sex, weight = x) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d(option  = "plasma") +
+  labs(title = "Comparativo masculino x feminino",
+       x = "Países",
+       y = "Comparativo",
+       subtitle = "Entre todos os países") +
+  theme(axis.text.x=element_blank())
